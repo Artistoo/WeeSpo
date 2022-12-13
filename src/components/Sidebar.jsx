@@ -26,12 +26,12 @@ const Sidebar = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
+
+      {/* Desktop Display  */}
       <div className=" md:flex hidden flex-col w-[240px] py-10 px-4 bg-[#191624ef] ">
         <img src={logo} alt="logo" className="w-full h-14 object-contain" />
         <NavLinks handleClick={() => setOpen(true)} />
       </div>
-
-
 
       {/* Small Devices Display  */}
       <div className="absolute left-[90%] mt-5 z-[100] md:hidden">
