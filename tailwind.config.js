@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         black: '#191624',
       },
+      
       animation: {
         slideup: 'slideup 1s ease-in-out',
         slidedown: 'slidedown 1s ease-in-out',
@@ -13,6 +14,7 @@ module.exports = {
         slideright: 'slideright 1s ease-in-out',
         wave: 'wave 1.2s linear infinite',
         slowfade: 'slowfade 2.2s ease-in-out',
+        slideItUp : 'slideItUp 500ms 50ms ease-in-out'
       },
       keyframes: {
         slowfade: {
@@ -40,6 +42,18 @@ module.exports = {
           '50%': { transform: 'scale(1)' },
           '100%': { transform: 'scale(0)' },
         },
+        slideItUp : {
+          from : {
+            translate : 'y(-25%)',
+            visibility : "hidden"
+          },
+          to : {
+            translate : 'y(0%)', 
+            visibility : 'visible'
+          }
+        }
+
+
       },
     },
   },

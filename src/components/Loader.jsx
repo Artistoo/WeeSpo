@@ -10,3 +10,4 @@ const Loader = ({title}) => {
 }
 
 export default Loader;
+

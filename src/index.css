@@ -41,3 +41,15 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+#lyrics {
+  font-family : 'raleway' !important; 
+}
+
+
+@layer base{
+  @font-face {
+    font-family: raleway;
+    src: url('assets/Raleway.ttf');
+  }
+  
+}
