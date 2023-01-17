@@ -1,9 +1,40 @@
+import { useState } from "react ";
+import { useNavigate } from "react-router-dom";
+import { FiSearch } from "react-icons/fi";
 const Searchbar = () => {
+  const navigate = useNavigate();
+
+  const [Search, setSearch] = useState("");
+
   return (
-    <div className={`flex  h-[70px] items-center align-center `}>
-      <input placeholder="Search ..." className={`xl:ml-10 xl:w-[50%] md:my-[15px] p-5 w-[70vw] mt-2 rounded-[5px] h-[35px] backdrop-blur-lg z-10  m-auto  bg-transparent focus:bg-blue-900  focus:text-white transition-bg duration-100 focus:outline-none font-[raleway]`}  type="text"  />
-    </div>
-  )
-}
+    <form
+      autoComplete="off"
+      className="p-2 text-gray-400 mb-5 focus-within:text-gray-600 "
+      onSubmit={(e) => {
+        e.preventDefault();
+        navigate(`/search/${Search}`);
+      }}
+    >
+      <label htmlFor="search-field" className={`sr-only`}>
+        Search All Songs{" "}
+      </label>
+      <div className={`flex flex-row justify-start items-center`}>
+        <FiSearch className="w-5 h-5 mx-5" />
+        <input
+          name={`search-field`}
+          autoComplete="off"
+          id={`search-field`}
+          placeholder={`Search`}
+          type="search"
+          value={Search || ''}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          className={`flex-1 bg-transparent border-none outline-none placeholder-gray-500 text-base text-white p-5`}
+        />
+      </div>
+    </form>
+  );
+};
 
 export default Searchbar;

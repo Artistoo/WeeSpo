@@ -1,19 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { createStore } from "redux";
+import { keys } from "../../../keys";
 
 export const shazamCoreApi = createApi({
   reducerPath: "shazamCoreApi" /* key */,
   baseQuery: fetchBaseQuery({
     baseUrl: "https://shazam-core.p.rapidapi.com/v1",
     prepareHeaders: (headers) => {
-      headers.set(
-        "X-RapidAPI-Key",
-        "0e56cfa6damsh07cd963f147964bp1fbf0cjsn86c42b1dc4d9"
-      );
+      headers.set("X-RapidAPI-Key", keys.shazamCoreApikey);
       return headers;
     },
   }),
-
 
   endpoints: (builder) => ({
     getTopCharts: builder.query({ query: () => "/charts/world" }),
@@ -24,37 +20,48 @@ export const shazamCoreApi = createApi({
       query: ({ songid }) => `/tracks/related?track_id=${songid}`,
     }),
     getArtistDetails: builder.query({
-      query: ( artistId ) => `/artists/details?artist_id=${artisartistIdtId}`,
+      query: (artistId) => `/artists/details?artist_id=${artisartistIdtId}`,
+    }),
+    getSongsByCountry: builder.query({
+      query: (country) => `/charts/country?country_code=${country}`,
+    }),
+    getSongByGenre: builder.query({
+      query: (genre) => `/charts/genre-world?genre_code=${genre}`,
+    }),
+    getSongBySearch: builder.query({
+      query: (search) =>
+        `/search/multi?search_type=SONGS_ARTISTS&query=${search}`,
     }),
   }),
 });
 
-
-
 export const ShazamCoreApiV2 = createApi({
-  reducerPath : 'shazamCoreApiV2' , 
-  baseQuery : fetchBaseQuery({
-    baseUrl : 'https://shazam-core.p.rapidapi.com/v2' ,
-    prepareHeaders : (headers)=>{
-      headers.set(`X-RapidAPI-Key` , "0e56cfa6damsh07cd963f147964bp1fbf0cjsn86c42b1dc4d9" )
-      headers.set(`X-RapidAPI-Host`,  "shazam-core.p.rapidapi.com")
-      return headers ;
-    }
+  reducerPath: "shazamCoreApiV2",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://shazam-core.p.rapidapi.com/v2",
+    prepareHeaders: (headers) => {
+      headers.set(
+        "X-RapidAPI-Key",
+        keys.shazamCoreApikey
+      );
+      headers.set(`X-RapidAPI-Host`, keys.XRapidApiHost);
+      return headers;
+    },
   }),
-  endpoints: (builder)=> ({
-    getArtistDetails : builder.query({query : (artistID)=> `/artists/details?artist_id=${artistID}` })
-  })
-})
+  endpoints: (builder) => ({
+    getArtistDetails: builder.query({
+      query: (artistID) => `/artists/details?artist_id=${artistID}`,
+    }),
+  }),
+});
 
-
-
-export const {
-  useGetArtistDetailsQuery
-} = ShazamCoreApiV2
-
+export const { useGetArtistDetailsQuery } = ShazamCoreApiV2;
 
 export const {
+  useGetSongByGenreQuery,
   useGetTopChartsQuery,
   useGetSongDetailsQuery,
   useGetRelatedSongsQuery,
+  useGetSongsByCountryQuery,
+  useGetSongBySearchQuery,
 } = shazamCoreApi;

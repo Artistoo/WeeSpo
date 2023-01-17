@@ -130,13 +130,13 @@ const TopPlay = () => {
   return (
     <div
       ref={divRef}
-      className={`xl:ml-6 gap-2 ml-5 xl:mb-0 animate-slideItUp mb-6 flex-1 xl:max-x-[400px] xl:w-[500px] max-w-full animate-slidedown  flex flex-col  ${
+      className={`xl:ml-6 gap-2 ml-5 xl:mb-0 animate-slideItUp mb-6 flex-1 xl:max-x-[400px] xl:w-[500px] max-w-full animate-slidedown top-[-10px] relative flex flex-col  ${
         isFetching && `hidden`
       }`}
     >
       <div className={`flex flex-col gap-[2rem]`}>
         <div
-          /* topCharts */ className=" text-center flex flex-row justify-between items-center xl:justify-evenly xl:gap-11 w-[550px]"
+          /* topCharts */ className=" text-center flex flex-row justify-between items-center xl:justify-evenly translate-y-5 xl:gap-11 w-[550px]"
         >
           <h2 className={H2Class("h")}>Top Charts</h2>
           <Link to="/top-charts">
@@ -161,7 +161,11 @@ const TopPlay = () => {
       </div>
 
       {/* Top Artists (Swiper) */}
-      <div className="flex flex-row relative  justify-center align-center    ">
+      <div className="flex flex-col mt-5 relative  justify-center align-center    ">
+        <div className={` mb-5 w-[100%] m-auto flex flex-row justify-around relative	xl:top-[-27px] items-center text-white gap-10 font-semibold xl:justify-around	 text-[17px]`}>
+          <p className="text-white ">More</p>
+          <p className="text-orange-400">Charts </p>
+        </div>
         <Swiper
           spaceBetween={5}
           modules={[FreeMode]}
@@ -169,7 +173,7 @@ const TopPlay = () => {
           centeredSlides
           centeredSlidesBounds
           slidesPerView="4"
-          className="mt-0 justify-center  md:w-[600px]  md:h-[150px] xl:h-[110px] align-center  relative flex align-center h-[120px]   xl:w-[850px] w-[550px] xl:left-[50px] "
+          className="mt-0 justify-center  md:w-[600px]  md:h-[150px] xl:h-[100px]  xl:top-[-35px] align-center  relative flex align-center  h-[120px] m-auto  xl:w-[370px] w-[80vw]   "
         >
           {topPlayedSongs?.map((song, index) => (
             <SwiperSlide
@@ -177,7 +181,7 @@ const TopPlay = () => {
               style={{
                 position : 'relative', 
                 margin: "15px",
-                height: '100%', 
+                height: '110%', 
                 width: "20%",
                 alignSelf: "start",
                 position: "relative",
